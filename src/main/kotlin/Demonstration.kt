@@ -25,6 +25,13 @@ inline class FifthTest(val ignored: String) {
     }
 }
 
+inline class SixthTest(val ignored: String) {
+    fun a(sixthTest: SixthTest, str: String) = sixthTest.ignored + ignored + str
+    suspend fun b() {
+        val a = a(this, ignored)
+    }
+}
+
 inline class VerifyErrorOne(val ignored: String) {
     suspend fun a() = ignored
     suspend fun b() {
@@ -56,6 +63,8 @@ fun main() {
     println(fourthTest)
     val fifthTest = FifthTest("")
     println(fifthTest)
+    val sixthTest = SixthTest("")
+    println(sixthTest)
 
     /** These break! */
 
